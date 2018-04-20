@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数作用域,闭包,setTimeout事件</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function fn() {
+        for (var i = 0; i < 2; i++) {
+            var variate = i;
+            setTimeout(function () {
+                console.log(variate);
+            }, 0);
+        }
+        console.log(i);
+    }
+    fn();
+    /* 
+        函数运行过程:1.for循环遍历i,(0,1)的时候分别将遍历值传给variate变量
+                    2.当传到i为2时,最后保存在for(){}作用域内的variate变量值为1,此时指针跳出循环,执行到打印i值这步
+                    3.执行函数fn(),执行完毕后,触发setTimeout事件,因为循环2次,而且最后保存在这个作用域中变量的值为1,所以最后输出2个1
+                    4.所以最后输出顺序为2,1,1
+               
+        总结:1.setTimeout事件是异步的,需要等主函数执行完后才能执行;
+            2.内部环境可以通过作用域链访问外部变量,但外部却不能访问内部变量,只能从里到外;
+     */
+</script>
+
+</html>
