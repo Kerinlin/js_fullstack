@@ -17,18 +17,18 @@ var duck ={
 
 // new一下,json对象,不需要new
 // json 慢慢描述 也是数据交换的标准
-var oyc={
-    name:'欧阳铖',
-    hasGirlFriend:false,
-    birth:'5-04',
-    girlAttributes: {
-        sex: 'all',
-        isAlive:true
-    }
-}
-console.log(oyc.girlAttributes.sex);
-oyc.girlAttributes.sex="female";
-console.log(oyc.girlAttributes.sex);
+// var oyc={
+//     name:'欧阳铖',
+//     hasGirlFriend:false,
+//     birth:'5-04',
+//     girlAttributes: {
+//         sex: 'all',
+//         isAlive:true
+//     }
+// }
+// console.log(oyc.girlAttributes.sex);
+// oyc.girlAttributes.sex="female";
+// console.log(oyc.girlAttributes.sex);
 
 var chicken={
     ducksinging:function () {
