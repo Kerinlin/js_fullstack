@@ -20,7 +20,7 @@ var xiaoming = {
         if(typeof target.receiveFlower=='function')
             target.receiveFlower(flower, this.name);
         else
-            console.log('拿到名企前是不可能谈恋爱的.');
+            console.log('拿到名企前是不可能谈恋爱的');
     }
 }
 // 具有详述性， 最简单创造的对象
