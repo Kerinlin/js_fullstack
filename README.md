@@ -1,2 +1,3 @@
-# oyc_js_fullstack
-欧阳铖js全栈学习
+# Javascript 学习
+
+里面包含一些javascript案例以及总结
