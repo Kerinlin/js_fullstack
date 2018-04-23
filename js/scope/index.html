@@ -13,7 +13,7 @@
 </body>
 <script>
     
- /*    function fn() {
+    /* function fn() {
         for (var i = 0; i < 2; i++) {
             var variate = i;
             setTimeout(function () {
@@ -46,7 +46,7 @@
                             
            }
           console.log(i);//2
-          console.log(variate); //variate is not defined? 因为外部变量无法访问闭包内部的变量
+          console.log(variate);
        }
        fn(); 
     
@@ -83,6 +83,21 @@
     }
     fn();   
     */
+    /* var Gscope = "global";
+        function t() {
+            var Gscope;
+            console.log("这是全局变量:"+Gscope);//这是全局变量:undefined
+            Lscope = "local";
+            console.log("这是局部变量"+Lscope);//这是局部变量local
+        }  
+    t(); */
+
+    /* for (let i = 0; i < 2; i++) {
+            let i = 'a';
+            console.log(i);//a a
+        }
+    console.log(i);//i is not defined */
+
 
 </script>
 
