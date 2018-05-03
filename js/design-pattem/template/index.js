@@ -115,7 +115,7 @@ Beverage.prototype.init = function () {
     this.addComdiments();
 }
 
-var Coffee = function () {
+var Coffee = function () {}
     Coffee.prototype = new Beverage();
     Coffee.prototype.brew = function () {
         console.log('水冲咖啡');
@@ -126,10 +126,10 @@ var Coffee = function () {
     Coffee.prototype.addComdiments = function () {
         console.log('加糖和牛奶');
     }
-}
 
 
-var Tea = function () {
+
+var Tea = function () {}
     Tea.prototype = new Beverage();
     // 覆盖父类方法 brew interface(接口)
     Tea.prototype.brew = function () {
@@ -141,7 +141,7 @@ var Tea = function () {
     Tea.prototype.addComdiments= function () {
         console.log('加柠檬');
     }
-}
+
 var coffee = new Coffee();
 coffee.init();
 
@@ -207,6 +207,7 @@ var Coffee=Beverage({
         console.log('加糖和牛奶');
     }
 });
+
 /* 
     1.通过Beverage,构造了Coffee构造函数,并且向Beverage传入了方法,
     2.Berverage相当于是一个中介,使者,将Coffee跟他的方法结合起来了.
