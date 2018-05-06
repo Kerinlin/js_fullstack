@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+
+<map id="ofoMap" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" controls="{{controls}}" show-location="{{true}}" />
+
+</view>
+
+
+
+
+<!-- UI组件  一组标签   map是原生html提供不了的
+html在诞生时,展示文档,简单就好,能力有限
+组件 提供一个牛b的功能,封装起来,用一个新的标签来表示
+--> 
+
