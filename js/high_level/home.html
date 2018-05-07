@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小家</title>
+</head>
+<body>
+    <div id="user">
+        <img src="" alt="" id="avatar">
+        <p id="username"></p>
+    </div>
+    
+    <form action="" name="userForm">
+            <label for="avatarInput"></label>
+            <input type="text" name="avatar"id="avatarInput">
+    </form>
+    
+    
+    <div class="filid">
+        <label for="nicknameInput"></label>
+        <input type="text" name="nickname" id="nicknameInput">
+    </div>
+
+
+
+    <script>
+        window.onload=function(){
+            const user_id = 10001;
+            const URL = 'https://www.easy-mock.com/mock/5aded0f4c57e6f08ff165a51/students/userinfo#!method=get';
+           
+            function renderUserInfo(user) {
+                document.querySelector('#avatar').src = user.data.avatar || '';
+                document.querySelector('#username').innerHTML = user.data.nickname || '未命名';
+            }
+            function renderUserForm(user) {
+                const oForm = document.forms['userForm'];
+                const avatarInput = oForm['avatar'];
+                const nickname = oForm['nickname'];
+                avatarInput.value = user.data.avatar;
+                nicknameInput.value = user.data.nickname;
+            }
+            function getUserInfo(uid, ...fn) {
+                fetch(URL)
+                    .then(data => data.json())
+                    .then(data => {
+                        // fn(data);
+                        // renderUserInfo(data);
+                        fn.forEach(func => {
+                            func(data);
+                        })
+                    })
+            }
+            getUserInfo(user_id,renderUserInfo,renderUserForm);
+        }
+        
+        
+
+      
+
+     
+       
+      
+       
+    
+    
+    </script>
+</body>
+</html>
