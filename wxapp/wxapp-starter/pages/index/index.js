@@ -58,10 +58,10 @@ Page({
       url: API_BASE,
       success: (res)=>{
         // success
-        const entities={
+        const entities=[
           ...this.data.entities,
           ...res.data.data.articles
-        };
+        ];
         this.setData({
           entities,
           isLoading:false,

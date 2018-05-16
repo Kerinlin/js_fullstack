@@ -1,13 +1,16 @@
 <!-- 多个页面会共享  -->
 <import src="/templates/spinner.wxml"/>
-<navigator url="/pages/post/show?id={{item.id}}" wx:for="{{entities}}" wx:key="{{item.id}}"
-    class="media-box media-box_appmsg">
+    <navigator url="/pages/posts/show?id={{item.id}}" class="media-box media-box_appmsg" wx:for="{{entities}}" wx:key="{{item.id}}">
     <view class="media-box__hd media-box__hd_in-appmsg">
-        <image class="media-box__thumb" src="/assets/images/a.png"/>
+        <image class="media-box__thumb" src="/assets/images/a.png" />
     </view>
     <view class="media-box__bd media-box__bd_in-appmsg">
-        <view class="media-box__title">{{item.title.rendered}}</view>
-        <view class="media-box__desc">{{item.excerpt.plaintext}}</view>
+        <view class="media-box__title">
+            {{item.title.rendered}}-{{index}}
+        </view>
+        <view class="media-box__desc">
+            {{item.excerpt.plaintext}}
+        </view>
     </view>
-</navigator>
+    </navigator>
 <template is="spinner" data="{{isLoading}}"/>
