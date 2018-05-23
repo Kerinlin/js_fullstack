@@ -3,8 +3,7 @@
         <view class="cart-box">
             <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
                 <icon  wx:if="{{item.selected}}" type="success" color="red" data-index="{{index}}" class="cart-pro-select" bindtap="selectList"/>
-                <icon  wx:else type="circle" class="cart-pro-select" data-index="{{index}}"
-                bindtap="selectList" />
+                <icon  wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList" />
                 <navigator >
                     <image class="cart-thumb" src="{{item.image}}"/>
                     <text class="cart-pro-name">{{item.title}}</text>

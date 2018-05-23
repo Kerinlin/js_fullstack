@@ -75,20 +75,17 @@ Page({
           carts,
          selectAllStatus:false
         })
-        return false
+        this.getTotalPrice();
+        return false    
     } else{
         this.setData({
           carts,
           selectAllStatus: true
         })
+        this.getTotalPrice();
       } 
     }  
     } 
-    // console.log(carts[index].selected );
-    // this.setData({
-    //   carts,
-    // });
-    this.getTotalPrice();
   },
   /**
    * 生命周期函数--监听页面加载
