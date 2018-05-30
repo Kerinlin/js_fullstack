@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单验证</title>
+</head>
+
+<body>
+    <form action="http://xxx.com/register" method="post" id="registerForm">
+        <div class="field">
+            请输入用户名：
+            <input type="text" name="userName" />
+        </div>
+        <div class="field">
+            请输入密码：
+            <input type="password" name="password" />
+        </div>
+        <div class="field">
+            请输入手机号：
+            <input type="tel" name="phoneNumber" />
+        </div>
+        <button>提交</button>
+    </form>
+    <script src="./validator.js"></script>
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        registerForm.onsubmit = function () {
+            var errorMsg = validatorFunc();
+            if (errorMsg) {
+                alert(errorMsg);
+                return false;
+            }
+            return true;
+        }
+        function validatorFunc() {
+            var validator = new Validator();
+            validator.add(registerForm.userName, 'isNonEmpty', '用户名不能为空');
+            validator.add(registerForm.password, 'minLength:6', '密码长度不小于6位');
+            validator.add(registerForm.phoneNumber, 'isMobilePhone', '手机格式错误');
+            var errorMsg = validator.start();
+            return errorMsg;         
+        }
+        function Validator() {
+            this.cache = [];
+        }
+        Validator.prototype = {
+            add: function (dom, rule, errorMsg) {
+                var ary = rule.split(':');
+                this.cache.push(function () {
+                    var strategy = ary.shift();
+                    ary.unshift(dom.value);
+                    ary.push(errorMsg);
+                    return strategies[strategy].apply(dom, ary)
+                    // 最后一句?
+                })
+            },
+            start: function () {
+                for (var i=0, validatorFunc; validatorFunc = this.cache[i++];) {
+                    var msg = validatorFunc();
+                    if (msg) {
+                        return msg;
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
