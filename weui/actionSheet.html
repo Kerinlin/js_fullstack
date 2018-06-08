@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>actionSheet原生组件</title>
+    <!-- <link rel="stylesheet" href="./actionsheet.css"> -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js">
+    </script>
+    <style>
+        .weui-btn {
+            position: relative;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 14px;
+            padding-right: 14px;
+            box-sizing: border-box;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            color: #FFFFFF;
+            line-height: 2.55555556;
+            border-radius: 5px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            overflow: hidden;
+        }
+        .weui-btn_default {
+            color: #000000;
+            background-color: #F8F8F8;
+        }
+        .weui-mask {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .weui-mask_transparent {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+        .weui-actionsheet {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            -webkit-transform: translate(0, 100%);
+            transform: translate(0, 100%);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            z-index: 5000;
+            width: 100%;
+            background-color: #EFEFF4;
+            -webkit-transition: -webkit-transform .3s;
+            transition: -webkit-transform .3s;
+            transition: transform .3s;
+            transition: transform .3s, -webkit-transform .3s;
+        }
+        .weui-actionsheet__title {
+            position: relative;
+            height: 65px;
+            padding: 0 20px;
+            line-height: 1.4;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            background: #FCFCFD;
+        }
+        .weui-actionsheet__title:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 1px;
+            border-bottom: 1px solid #e5e5e5;
+            color: #e5e5e5;
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+        .weui-actionsheet__title .weui-actionsheet__title-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        .weui-actionsheet__menu {
+            background-color: #FCFCFD;
+        }
+        .weui-actionsheet__action {
+            margin-top: 6px;
+            background-color: #FCFCFD;
+        }
+        .weui-actionsheet__cell {
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 18px;
+        }
+        .weui-actionsheet__cell:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid #e5e5e5;
+            color: #e5e5e5;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+        .weui-actionsheet__cell:active {
+            background-color: #ECECEC;
+        }
+        .weui-actionsheet__cell:first-child:before {
+            display: none;
+        }
+        .weui-actionsheet_toggle {
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="javascript:;" class="weui-btn weui-btn_default" id="showaction">快点点我</a>
+    <div>
+        <div class="weui-mask" id="mask" style="display: none"></div>
+        <div class="weui-actionsheet" id="action">
+            <div class="weui-actionsheet__title">
+                <p class="weui-actionsheet__title-text">这是一个标题，可以为一行或者两行。</p>
+            </div>
+            <div class="weui-actionsheet__menu">
+                <div class="weui-actionsheet__cell">示例菜单</div>
+                <div class="weui-actionsheet__cell">示例菜单</div>
+                <div class="weui-actionsheet__cell">示例菜单</div>
+                <div class="weui-actionsheet__cell">示例菜单</div>
+            </div>
+            <div class="weui-actionsheet__action">
+                <div class="weui-actionsheet__cell" id="actionCancel">取消</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    // ios
+    $(function () {
+        var $action = $('#action');
+        var $mask = $('#mask');
+        function hideActionSheet() {
+            $action.removeClass('weui-actionsheet_toggle');
+            $mask.fadeOut(200);
+        }
+        $mask.on('click', hideActionSheet);
+        $('#actionCancel').on('click', hideActionSheet);
+        $("#showaction").on("click", function () {
+            $action.addClass('weui-actionsheet_toggle');
+            $mask.fadeIn(200);
+        });
+    });
+</script>
+
+</html>
