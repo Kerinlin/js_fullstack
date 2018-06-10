@@ -12,6 +12,7 @@ Page({
     result: []
   },
   onLoad: function (options) {
+    const inputValue = options.inputValue;
     if (wx.getStorageSync('searchData') == '') {
       this.setData({
         isHide: true,
@@ -19,16 +20,13 @@ Page({
       })
     } else {
       this.setData({
+        inputValue: inputValue,
+        confirm: '完成',
+        sercherStorage: wx.getStorageSync('searchData') || [],
         isHide: false,
         isShow: true
       })
-    }
-    const inputValue = options.inputValue;
-    this.setData({
-      inputValue: inputValue,
-      confirm: '完成',
-      sercherStorage: wx.getStorageSync('searchData') || [],
-    })
+    }  
   },
   changeValue(e) {
     let inputValue = e.detail.value;
@@ -36,56 +34,56 @@ Page({
       this.setData({
         confirm: '取消',
         isConfirm: false,
+        isHide:false,
         width: '85%',
-        isShow: true
+        isShow: true,
+        isCover:true
       })
     } else {
       this.setData({
         confirm: '完成',
+        inputValue: inputValue
       })
     }
-    this.setData({
-      inputValue: inputValue
-    })
   },
   confirmValue(e) {
     let value = this.data.inputValue;
     if (this.data.confirm === '完成') {
-      // let result = [];
-      // let job = jobList
-      // for (let i in job) {
-      //   if (job[i].jobName.indexOf(value) >= 0){
-      //     result.push(job[i]);
-      //     this.setData({
-      //       result
-      //     })
-      //   }
-      //   if(this.data.result.length == 0) {      
-      //     wx.showToast({
-      //       title: '未找到数据',
-      //     });
-      //     this.setData({
-      //       isConfirm: false,
-      //       isHide: false
-      //     })
-      //   }
-      // }
-         
-      let result=[];
-      let reg=new RegExp(value);
-      for(var i=0;i<jobList.length;i++){
-        if(jobList[i].jobName.match(reg)){
-          result.push(jobList[i]);
+      let result = [];
+      let job = jobList
+      for (let i in job) {
+        if (job[i].jobName.indexOf(value) >= 0){
+          result.push(job[i]);
           this.setData({
             result
           })
         }
+        if(this.data.result.length == 0) {      
+          wx.showToast({
+            title: '未找到数据',
+          });
+          this.setData({
+            isConfirm: false,
+            isHide: false
+          })
+        }
       }
-           
+         
+      // let result=[];
+      // let reg=new RegExp(value);
+      // for(var i=0;i<jobList.length;i++){
+      //   if(jobList[i].jobName.match(reg)){
+      //     result.push(jobList[i]);
+      //     this.setData({
+      //       result
+      //     })
+      //   }
+      // }
+
       this.setData({
         isConfirm: true,
         width: '95%',
-        inputValue: '',
+        inputValue: value,
         isHide: true,
         isShow: false,
         isCover: false

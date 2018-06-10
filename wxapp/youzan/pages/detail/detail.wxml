@@ -32,7 +32,7 @@
         <view class="server">服务小能手</view>
         <image class="active" src="../../youzan-image/active.png"></image>
         <view class="activeTitle">最近活跃：1小时前</view>
-        <text decode="{{true}}" class="titleTag">#简历处理快如闪电　#很少回聊天信息　#早上活跃</text>
+        <text decode="{{true}}" class="titleTag">#简历处理快如闪电 #很少回聊天信息　#早上活跃</text>
     </view>
     <view class="listContainer">
         <view class="weui-loadmore weui-loadmore_line">
