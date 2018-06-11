@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/record/record",
     "pages/user/user",
     "pages/course/course",
     "pages/cost/cost",
-    "pages/buy/buy"
+    "pages/buy/buy",
+    "pages/recharge/recharge"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
