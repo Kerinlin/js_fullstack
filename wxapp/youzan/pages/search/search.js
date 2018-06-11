@@ -26,7 +26,7 @@ Page({
         isHide: false,
         isShow: true
       })
-    }  
+    }
   },
   changeValue(e) {
     let inputValue = e.detail.value;
@@ -34,10 +34,10 @@ Page({
       this.setData({
         confirm: '取消',
         isConfirm: false,
-        isHide:false,
+        isHide: false, //显示历史记录container
         width: '85%',
-        isShow: true,
-        isCover:true
+        isShow: true,  //显示图标以及标签栏  
+        isCover: true //隐藏搜索结果的container
       })
     } else {
       this.setData({
@@ -45,20 +45,20 @@ Page({
         inputValue: inputValue
       })
     }
-  },
+  },//监听输入
+
   confirmValue(e) {
-    let value = this.data.inputValue;
+    let value = this.data.inputValue;//获取输入值
     if (this.data.confirm === '完成') {
       let result = [];
-      let job = jobList
-      for (let i in job) {
-        if (job[i].jobName.indexOf(value) >= 0){
-          result.push(job[i]);
+      for (let i in jobList) {
+        if (jobList[i].jobName.indexOf(value) >= 0) {
+          result.push(jobList[i]);
           this.setData({
             result
           })
         }
-        if(this.data.result.length == 0) {      
+        if (this.data.result.length == 0) {
           wx.showToast({
             title: '未找到数据',
           });
@@ -67,8 +67,9 @@ Page({
             isHide: false
           })
         }
-      }
-         
+      }//搜索数据匹配
+
+      // 第二种搜索方法 正则匹配
       // let result=[];
       // let reg=new RegExp(value);
       // for(var i=0;i<jobList.length;i++){
@@ -79,26 +80,25 @@ Page({
       //     })
       //   }
       // }
-
-      this.setData({
-        isConfirm: true,
-        width: '95%',
-        inputValue: value,
-        isHide: true,
-        isShow: false,
-        isCover: false
-      })
       let searchData = this.data.sercherStorage;
       searchData.push({
         id: searchData.length,
         name: value
       })
-      wx.setStorageSync('searchData', searchData);
+      wx.setStorageSync('searchData', searchData); //设置缓存
+      this.setData({
+        isConfirm: true,  //隐藏搜索按钮
+        width: '95%',
+        inputValue: value,
+        isHide: true,   //隐藏历史记录container
+        isShow: false,    //隐藏图标以及标签栏
+        isCover: false    //显示搜索结果
+      })
     } else {
       wx.navigateBack({
         delta: 1, // 回退前 delta(默认为1) 页面
       })
-    }
+    }//点击取消回到上个页面
 
   },
   clearStorage(e) {
