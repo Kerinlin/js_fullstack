@@ -1,5 +1,0 @@
-@import 'styles/weui.wxss';
-@import "./templates/template.wxss";
-page {
-    font-family: 'Microsoft Yahei', sans-serif;
-}

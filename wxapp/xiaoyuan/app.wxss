@@ -1,5 +1,0 @@
-/**app.wxss**/
-@import 'styles/weui.wxss';
-body{
-    background-color: #eaeaea;
-}
