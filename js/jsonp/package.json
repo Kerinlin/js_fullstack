@@ -1,0 +1,20 @@
+{
+  "name": "jsonp",
+  "version": "1.0.0",
+  "description": "跨域 域名 端口 协议\r js 请求有一个同源机制",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
+    "nodemon": "^1.18.3"
+  }
+}
